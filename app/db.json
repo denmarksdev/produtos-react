@@ -1,0 +1,15 @@
+{
+    "produtos":[
+
+    ],
+    "categorias":[
+        {
+            "id":1,
+            "nome":"Limpeza"
+        },
+        {
+            "id":2,
+            "nome":"Alimentos"
+        }
+    ]
+}
