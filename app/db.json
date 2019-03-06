@@ -1,15 +1,24 @@
 {
-    "produtos":[
-
-    ],
-    "categorias":[
-        {
-            "id":1,
-            "nome":"Limpeza"
-        },
-        {
-            "id":2,
-            "nome":"Alimentos"
-        }
-    ]
+  "produtos": [
+    {
+      "id": 1,
+      "produto": "Sabão em pó",
+      "categoria": "1"
+    },
+    {
+      "id": 2,
+      "produto": "Bolacha",
+      "categoria": "2"
+    }
+  ],
+  "categorias": [
+    {
+      "nome": "Limpeza",
+      "id": 1
+    },
+    {
+      "nome": "Alimentos",
+      "id": 2
+    }
+  ]
 }
