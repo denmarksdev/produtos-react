@@ -1,16 +1,16 @@
 import axios from 'axios'
 
-const api = axios.create({
+const customApi = axios.create({
     baseURL: 'http://localhost:3001/'
 })
 
-const  apis = {
-    loadCategorias: () => api.get('categorias'),
-    deleteCategoria: id => api.delete('categorias/' + id),
-    postCategoria : nome => api.post('categorias', { nome }),
-    getCategoria : id => api.get(`categorias/${id}`),
+const api = {
+    loadCategorias: () => customApi.get('categorias'),
+    deleteCategoria: id => customApi.delete('categorias/' + id),
+    postCategoria : nome => customApi.post('categorias', { nome }),
+    getCategoria : id => customApi.get(`categorias/${id}`),
 
-    getProduto: id => api.get(`produtos?categoria=${id}`)
+    getProduto: id => customApi.get(`produtos?categoria=${id}`)
 }
 
-export default apis
+export default api

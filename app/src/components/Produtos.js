@@ -3,8 +3,6 @@ import { Route, Link } from 'react-router-dom'
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria';
 
-import apis from '../Api';
-
 const categoriaContainer = {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -14,32 +12,15 @@ const categoriaContainer = {
 
 export default class Produtos extends React.Component {
 
-    state = {
-        categorias: []
-    }
-
     componentDidMount() {
-        apis.loadCategorias()
-            .then(res => res.data)
-            .then(categorias => {
-                this.setState({ categorias })
-            })
-    }
-
-    removeCategoria = (id) => {
-        apis.deleteCategoria(id)
-            .then(() => {
-                this.setState({
-                    categorias: this.state.categorias.filter(c => c.id !== id)
-                })
-            })
+        this.props.loadCategorias()
     }
 
     renderCategorias = (cat, index) => {
         return (
             <li key={index} style={categoriaContainer} >
                 <button className='btn' style={{ maxWidth: 35, maxHeight: 35, marginRight: '10px', }}
-                    onClick={() => this.removeCategoria(cat.id)}>
+                    onClick={() => this.props.removeCategoria(cat.id)}>
                     <span style={{ fontSize: 10, textAlign: 'center', }} className='glyphicon glyphicon-remove'></span>
                 </button>
                 <Link style={{ flexBasis: 100 }}
@@ -52,21 +33,15 @@ export default class Produtos extends React.Component {
 
     handleNewCategoria = key => {
         const ENTER_KEY = 13;
+
         if (key.keyCode === ENTER_KEY) {
-            apis.postCategoria(this.refs.categoria.value)
-                .then(res => res.data)
-                .then(novaCategoria => {
-                    this.setState({
-                        categorias: [...this.state.categorias, novaCategoria]
-                    })
-                    this.refs.categoria.value = ''
-                })
+            this.props.addCategoria(this.refs.categoria.value)
+                .then(() => this.refs.categoria.value = '')
         }
     }
 
     render() {
-        const { match } = this.props
-        const { categorias } = this.state
+        const { match, categorias } = this.props
         return (
             <div className='row' >
                 <div className='col-md-2'>
@@ -89,6 +64,5 @@ export default class Produtos extends React.Component {
                 </div>
             </div>
         )
-
     }
 }
