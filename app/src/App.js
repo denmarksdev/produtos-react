@@ -12,7 +12,9 @@ import Produtos from './components/Produtos'
 class App extends Component {
 
   state = {
-    categorias: []
+    categorias: [],
+    produtos: [],
+    categoria: {}
   }
 
   loadCategorias = () => {
@@ -42,6 +44,31 @@ class App extends Component {
       })
   }
 
+  editCategoria = categoria => {
+    return this.props.api.editCategoria(categoria)
+      .then(res => this.loadCategorias())
+  }
+
+  loadCategoria = id => {
+    return this.props.api.getCategoria(id)
+      .then(res => res.data)
+      .then(categoria => this.setState({ categoria }))
+  }
+
+  createProduto = produto => {
+    return this.props.api.createProduto(produto)
+  }
+
+  loadProdutos = idCategoria => {
+    return this.props.api.getProdutos(idCategoria)
+      .then(res => res.data)
+      .then(produtos => this.setState({ produtos }))
+  }
+
+  removeProduto = (produto) => {
+    return this.props.api.deleteProduto(produto.id)
+  }
+
   render() {
     return (
       <Router>
@@ -68,7 +95,14 @@ class App extends Component {
                   loadCategorias={this.loadCategorias}
                   removeCategoria={this.removeCategoria}
                   addCategoria={this.addCategoria}
+                  editCategoria={this.editCategoria}
                   categorias={this.state.categorias}
+                  createProduto={this.createProduto}
+                  loadProdutos={this.loadProdutos}
+                  loadCategoria={this.loadCategoria}
+                  produtos={this.state.produtos}
+                  categoria={this.state.categoria}
+                  removeProduto={this.removeProduto}
                 />}
             />
 

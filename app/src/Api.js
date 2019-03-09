@@ -8,9 +8,11 @@ const api = {
     loadCategorias: () => customApi.get('categorias'),
     deleteCategoria: id => customApi.delete('categorias/' + id),
     postCategoria : nome => customApi.post('categorias', { nome }),
+    editCategoria  : categoria => customApi.put('categorias/' + categoria.id , categoria),
     getCategoria : id => customApi.get(`categorias/${id}`),
-
-    getProduto: id => customApi.get(`produtos?categoria=${id}`)
+    getProdutos: categoria => customApi.get(`produtos?categoria=${categoria}`),
+    createProduto: produto => customApi.post(`produtos`,produto),
+    deleteProduto: id => customApi.delete('produtos/' + id)
 }
 
 export default api

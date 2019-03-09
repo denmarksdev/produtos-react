@@ -6,9 +6,19 @@
       "categoria": "1"
     },
     {
-      "id": 2,
+      "produto": "Novo",
+      "categoria": "1",
+      "id": 4
+    },
+    {
+      "produto": "Detergente",
+      "categoria": "1",
+      "id": 5
+    },
+    {
       "produto": "Bolacha",
-      "categoria": "2"
+      "categoria": "2",
+      "id": 6
     }
   ],
   "categorias": [
