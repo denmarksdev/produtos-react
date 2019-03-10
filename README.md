@@ -1,3 +1,3 @@
 # Produtos React
 
-Cadatro de produtos e Categorias em React
+Cadatro de produtos e categorias em React
