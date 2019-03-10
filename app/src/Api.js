@@ -12,7 +12,9 @@ const api = {
     getCategoria : id => customApi.get(`categorias/${id}`),
     getProdutos: categoria => customApi.get(`produtos?categoria=${categoria}`),
     createProduto: produto => customApi.post(`produtos`,produto),
-    deleteProduto: id => customApi.delete('produtos/' + id)
+    deleteProduto: id => customApi.delete('produtos/' + id),
+    readProduto:  id => customApi.get('produtos/' + id),
+    editProduto: produto => customApi.put(`produtos/${produto.id}`,produto),
 }
 
 export default api

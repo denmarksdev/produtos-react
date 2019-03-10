@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria';
 import ProdutosNovo from './ProdutoNovo';
+import ProdutoEditar from './ProdutosEditar'
 
 const categoriaContainer = {
     display: 'flex',
@@ -81,9 +82,9 @@ export default class Produtos extends React.Component {
                 id: this.state.editingCategoria,
                 produto: this.refs['cat-' + this.state.editingCategoria].value
             })
-                .then(() => {
+           .then(() => {
                     this.setState({ editingCategoria: '' })
-                })
+           })
         }
     }
 
@@ -116,6 +117,13 @@ export default class Produtos extends React.Component {
                                 createProduto={this.props.createProduto}
                             />
                         } />
+                    <Route path={match.url + '/editar/:id'} render={props =>
+                        <ProdutoEditar {...props}
+                            readProduto={this.props.readProduto}
+                            editProduto={this.props.editProduto}
+                            categorias={categorias} />
+                    } />
+
                     <Route exact path={match.url + '/categoria/:catId'} render={props =>
                         <Categoria  {...props}
                             loadProdutos={this.props.loadProdutos}
@@ -125,6 +133,7 @@ export default class Produtos extends React.Component {
                             removeProduto={this.props.removeProduto}
                         />
                     } />
+
                 </div>
             </div>
         )

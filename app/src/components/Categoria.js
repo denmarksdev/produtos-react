@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Categoria extends React.Component {
 
@@ -28,17 +29,21 @@ export default class Categoria extends React.Component {
     renderProduto = (item, index) => {
         return (
             <div>
-                <div key={index} style={{ display: 'flex', maxHeight: '40px', marginBottom: '10px' }} >
+                <div key={index} style={{ display: 'flex' }} >
                     <p className='well'  >
                         {item.produto}
                     </p>
-                    <button className='btn btn-primary'
-                        onClick={() => {
-                            this.props.removeProduto(item)
-                                .then(res => this.loadData(this.props.match.params.catId))
-                        }}>
-                        Excluir
+                    <div style={{ display: 'flex', maxHeight:'30px', justifyItems:'center', marginLeft:'5px'   }} >
+                        <Link style={{ marginRight: '5px' }}  className='btn btn-primary'
+                         to={'/produtos/editar/' + item.id}>Editar</Link>
+                        <button className='btn btn-danger'
+                            onClick={() => {
+                                this.props.removeProduto(item)
+                                    .then(res => this.loadData(this.props.match.params.catId))
+                            }}>
+                            Excluir
                     </button>
+                    </div>
                 </div>
             </div>
         )
@@ -49,10 +54,7 @@ export default class Categoria extends React.Component {
             match,
             produtos,
             categoria,
-            removeProduto
         } = this.props
-
-        console.log(removeProduto)
 
         return (
             <div>
@@ -61,8 +63,8 @@ export default class Categoria extends React.Component {
                     produtos.map(this.renderProduto)
                 }
                 {
-                    produtos.length === 0  &&
-                    <span class="label label-info">Sem produtos</span>
+                    produtos.length === 0 &&
+                    <span className="label label-info">Sem produtos</span>
                 }
             </div>
         )
